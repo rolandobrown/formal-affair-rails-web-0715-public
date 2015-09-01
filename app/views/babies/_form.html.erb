@@ -1,1 +1,28 @@
-<!-- Your form goes here! -->
+<%= form_for(@baby) do |f| %>
+  <% if @baby.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@baby.errors.count, "error") %> prohibited this baby from being saved:</h2>
+
+      <ul>
+      <% @baby.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name, "First Name" %><br>
+    <%= f.text_field :first_name %><br>
+    <%= f.label :last_name, "Last Name" %><br>
+    <%= f.text_field :last_name %><br>
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %><br>
+    <%= f.label :birth_date, "Birthday" %><br>
+    <%= f.text_field :birth_date %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit yield(:button_text) %>
+  </div>
+<% end %>
